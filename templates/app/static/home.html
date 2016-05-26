@@ -46,6 +46,8 @@
                 <form id="translate">
                     <br>
                     <!-- <textarea type="text" name="text" placeholder="What do you want to translate?" class="header-content-inner-input" style="font-size:17px" size="25"> -->
+		<label for="users">Send message to: </label>
+		<select id="users"></select>
                     <textarea id="message" placeholder="What do you want to translate?" class="header-content-inner-input" maxlength="140"></textarea>
                     <br>
                     <br>
@@ -71,6 +73,14 @@
     
 	<script type="text/javascript">
 	$(function(){
+		$.ajax({
+			url: "/users",
+			success: function(data){
+				for(var z = 0; z < data.length; z++){
+					$("#users").append("<option value='"+data[z]+"'>"+data[z]+"</select>");
+				}
+			}
+		})
 		$("#translate").submit(function(e){
 			e.preventDefault();
 			$.ajax({

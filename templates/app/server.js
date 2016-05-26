@@ -77,7 +77,7 @@ app.get("/messages/:user", function(req, res){
 		res.send(MQ[req.params.user]);
 		MQ[req.params.user] = [];
 	}else{
-		res.code(404).send("NO USER");
+		res.send([]);
 	}
 });
 
