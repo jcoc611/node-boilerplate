@@ -21,7 +21,10 @@ var USERS = {
 	}
 };
 var MQ = {
-	"main": []
+	"main": [],
+	"juan": [],
+	"uche": [],
+	"nancy": []
 };
 
 var app = express();

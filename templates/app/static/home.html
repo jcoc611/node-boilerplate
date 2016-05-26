@@ -85,13 +85,13 @@
 			e.preventDefault();
 			$.ajax({
 				method: "POST",
-				url: "messages/main",
+				url: "messages/" + $("#users").val(),
 				data: {
-					"user": "main",
+					"user": $("#users").val(),
 					"message": $("#message").val() 
 				}
 			});
-			$("#message").val();
+			$("#message").val("");
 		});
 	});
 	</script> 
