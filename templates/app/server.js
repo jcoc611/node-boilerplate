@@ -40,8 +40,7 @@ app.get('/users', function(req, res){
 
 app.post('/users', function(req, res){
 	if(USERS[req.body.username]){
-		res.status(406);
-		res.send("USER ALREADY EXISTS");
+		res.redirect("/index.html#exists");
 	}else{
 		var hash = crypto.createHash("sha1");
 		hash.update(req.body.password);
@@ -51,7 +50,7 @@ app.post('/users', function(req, res){
 			password: pass
 		};
 		MQ[req.body.username] = [];
-		res.send("CREATED");
+		res.redirect("/home.html");
 	}
 });
 
@@ -61,14 +60,14 @@ app.get('/app', function(req, res){
 
 app.post('/login', function(req, res){
 	if(!USERS[req.body.username]){
-		res.status(403).send("USER NOT FOUND");
+		res.redirect("/index.html#wrong");
 	}else{
 		var hash = crypto.createHash("sha1");
 		hash.update(req.body.password);
 		var pass = hash.digest("hex");
 		if(USERS[req.body.username].password == pass){
 			res.redirect("/home.html");
-		}else res.status(403).send('PASS WRONG');
+		}else res.redirect('/index.html#wrong');
 	}
 	res.end();
 });
